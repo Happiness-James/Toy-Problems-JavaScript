@@ -5,13 +5,7 @@
 // - https://www.aren.co.ke/payroll/taxpayees.htm Links to an external site.
 //  Links to an external site.-  Links to an external site.Links to an external site.
 // - www.kra.go.ke/en/individual/calculate-tax/calculating-tax/paye
-// basicSalary = Number(prompt("Enter your basic salary per month: "));
-// benefits = Number(prompt("Enter your benefits: "));
-// const input1 = document.getElementById('basic_salary')
-// const input2 = document.getElementById('benefit')
 
-grossSalary = 0
-// console.log(`your gross salary is ${grossSalary}`)
 function getPayeeFromSalary(grossSalary){
     let payee = 0
     if(grossSalary <= 24000){
@@ -93,24 +87,21 @@ function getNSSFdeductions(grossSalary){
     return deduction
 }
 
-// function netSalary(){
-//     let net = grossSalary - (payeeRate+nhifRate+nssfDeduction)
-//     return net
-// }
-// console.log(`your net salary is ${netSalary()}`);
 function netSalary(){
     const input1 = Number(document.getElementById('basic_salary').value)
     const input2 = Number(document.getElementById('benefit').value)
     let grossSalary = input1 + input2;
 
     let payeeRate = getPayeeFromSalary(grossSalary)
-    console.log(`your payee tax is ${payeeRate}`)
     let nhifRate = getNHIFdeductions(grossSalary);
-    console.log(`your NHIF deduction is ${nhifRate}`)
     let nssfDeduction = getNSSFdeductions(grossSalary)
-    console.log(`your NSSF deduction is ${nssfDeduction}`)
     let net = grossSalary - (payeeRate+nhifRate+nssfDeduction)
+    
 
-    document.getElementById("test").innerHTML = net
+    document.getElementById("net").innerHTML = `your net salary is ${net}`
+    document.getElementById("payee").innerHTML = `your payee tax is ${payeeRate}`
+    document.getElementById("nhif").innerHTML =  `your NHIF deduction is ${nhifRate}`
+    document.getElementById("nssf").innerHTML = `your NSSF deduction is ${nssfDeduction}`
+    document.getElementById("gross").innerHTML = `your gross salary is ${grossSalary}`
 }
 
