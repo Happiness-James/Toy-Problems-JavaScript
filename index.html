@@ -7,6 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="student.js"></script>
+    <script src="net.js"></script>
+    <form>
+        <label for="basic_salary">Basic salary:</label>
+        <input type="number" id="basic_salary" name="basic_salary" title="Enter your basic salary" required><br><br>
+        <label for="country_code">Benefit:</label>
+        <input type="number" id="benefit" name="benefit" title="Enter your benefit" required><br><br>
+        <!-- <button>Submit</button> -->
+      </form>
+      <button onclick="netSalary()"> Calculate net pay</button>
+      <p id="test">output</p>
+     
 </body>
 </html>

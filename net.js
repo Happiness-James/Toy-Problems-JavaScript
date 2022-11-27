@@ -5,10 +5,13 @@
 // - https://www.aren.co.ke/payroll/taxpayees.htm Links to an external site.
 //  Links to an external site.-  Links to an external site.Links to an external site.
 // - www.kra.go.ke/en/individual/calculate-tax/calculating-tax/paye
-basicSalary = Number(prompt("Enter your basic salary per month: "));
-benefits = Number(prompt("Enter your benefits: "));
-grossSalary = basicSalary + benefits
-console.log(`your gross salary is ${grossSalary}`)
+// basicSalary = Number(prompt("Enter your basic salary per month: "));
+// benefits = Number(prompt("Enter your benefits: "));
+// const input1 = document.getElementById('basic_salary')
+// const input2 = document.getElementById('benefit')
+
+grossSalary = 0
+// console.log(`your gross salary is ${grossSalary}`)
 function getPayeeFromSalary(grossSalary){
     let payee = 0
     if(grossSalary <= 24000){
@@ -25,8 +28,7 @@ function getPayeeFromSalary(grossSalary){
     }
     return payee 
 }
-let payeeRate = getPayeeFromSalary(grossSalary)
-console.log(`your payee tax is ${payeeRate}`)
+
 function getNHIFdeductions(grossSalary){
     let deduction = 0
     if(grossSalary <=5999){
@@ -82,8 +84,7 @@ function getNHIFdeductions(grossSalary){
     }
     return deduction
 }
-let nhifRate = getNHIFdeductions(grossSalary);
-console.log(`your NHIF deduction is ${nhifRate}`)
+
 function getNSSFdeductions(grossSalary){
     deduction = grossSalary*0.05
     if(deduction > 400){
@@ -91,11 +92,25 @@ function getNSSFdeductions(grossSalary){
     }
     return deduction
 }
-let nssfDeduction = getNSSFdeductions(grossSalary)
-console.log(`your NSSF deduction is ${nssfDeduction}`)
+
+// function netSalary(){
+//     let net = grossSalary - (payeeRate+nhifRate+nssfDeduction)
+//     return net
+// }
+// console.log(`your net salary is ${netSalary()}`);
 function netSalary(){
+    const input1 = Number(document.getElementById('basic_salary').value)
+    const input2 = Number(document.getElementById('benefit').value)
+    let grossSalary = input1 + input2;
+
+    let payeeRate = getPayeeFromSalary(grossSalary)
+    console.log(`your payee tax is ${payeeRate}`)
+    let nhifRate = getNHIFdeductions(grossSalary);
+    console.log(`your NHIF deduction is ${nhifRate}`)
+    let nssfDeduction = getNSSFdeductions(grossSalary)
+    console.log(`your NSSF deduction is ${nssfDeduction}`)
     let net = grossSalary - (payeeRate+nhifRate+nssfDeduction)
-    return net
+
+    document.getElementById("test").innerHTML = net
 }
-console.log(`your net salary is ${netSalary()}`);
 
